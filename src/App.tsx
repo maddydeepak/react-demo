@@ -6,11 +6,13 @@ import User from "./User";
 function App() {
   const [count, setCount] = useState(0);
   const [inputValue, setInputValue] = useState("");
-  const { user } = useContext(UserContext);
+  const [addressValue, setAddressValue] = useState("");
+  const { user, address } = useContext(UserContext);
   const [userData, setUserData] = useState({ name: user.name });
+  const [addressData, setAddressData] = useState({ place: address.place });
 
   return (
-    <UserContext.Provider value={{ user: userData }}>
+    <UserContext.Provider value={{ user: userData, address: addressData }}>
       <section id="center">
         <div>
           <h1>React Demo</h1>
@@ -18,13 +20,25 @@ function App() {
         <input
           type="text"
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={(e) => {
+            setInputValue(e.target.value);
+            setUserData({ name: e.target.value });
+          }}
+          placeholder="Enter Name Here"
+        />
+        <input
+          type="text"
+          value={addressValue}
+          onChange={(e) => {
+            setAddressValue(e.target.value);
+            setAddressData({ place: e.target.value });
+          }}
+          placeholder="Enter Address Here"
         />
         <button
           className="counter"
           onClick={() => {
             setCount((count) => count + 1);
-            setUserData({ name: inputValue });
           }}
         >
           Count is {count}

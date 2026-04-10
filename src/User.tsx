@@ -3,7 +3,7 @@ import UserContext from "./UserContext";
 import { useFetchPromise, useFetchAsyncAwait, useFetchIIFE } from "./useFetch";
 
 const User = () => {
-  const { user } = useContext(UserContext);
+  const { user, address } = useContext(UserContext);
 
   const data = useFetchPromise();
   const filteredData = data && data.filter((val) => val.id === 1);
@@ -17,6 +17,7 @@ const User = () => {
   return (
     <>
       <h1>{user.name}</h1>
+      <h2>{address.place}</h2>
       <div>
         {filteredData &&
           filteredData.map((val) => <li key={Number(val.id)}>{val.title}</li>)}
