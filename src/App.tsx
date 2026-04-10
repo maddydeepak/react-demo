@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import "./App.css";
 import UserContext from "./UserContext";
 import User from "./User";
+import Address from "./Address";
+import APICalls from "./APICalls";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -44,6 +46,8 @@ function App() {
           Count is {count}
         </button>
         <User />
+        <Address />
+        <APICalls />
       </section>
     </UserContext.Provider>
   );
