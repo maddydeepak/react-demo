@@ -1,7 +1,29 @@
 import { useEffect, useState } from "react";
 
+interface ToDoData {
+  userId: Number;
+  id: Number;
+  title: String;
+  completed: boolean;
+}
+
+interface PostData {
+  userId: Number;
+  id: Number;
+  title: String;
+  body: String;
+}
+
+interface PhotoData {
+  albumId: Number;
+  id: Number;
+  title: String;
+  url: String;
+  thumbnailUrl: String;
+}
+
 export const useFetchPromise = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<ToDoData[]>([]);
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then((response) => response.json())
@@ -12,7 +34,7 @@ export const useFetchPromise = () => {
 };
 
 export const useFetchAsyncAwait = () => {
-  const [data2, setData2] = useState(null);
+  const [data2, setData2] = useState<PostData[]>([]);
   useEffect(() => {
     const getData = async () => {
       try {
@@ -31,10 +53,10 @@ export const useFetchAsyncAwait = () => {
 };
 
 export const useFetchIIFE = () => {
-  const [data3, setData3] = useState(null);
+  const [data3, setData3] = useState<PhotoData[]>([]);
   useEffect(() => {
     (async () => {
-      const resp = await fetch("https://jsonplaceholder.typicode.com/users");
+      const resp = await fetch("https://jsonplaceholder.typicode.com/photos");
       const data3 = await resp.json();
       setData3(data3);
     })();
