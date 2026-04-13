@@ -10,7 +10,7 @@ const User = () => {
   const dispatch = useDispatch();
 
   const nameStoreHandler = () => {
-    if (inputValue.trim() !== "") {
+    if (inputValue.trim() !== "" && userList.indexOf(inputValue) === -1) {
       dispatch(updateName(inputValue));
     }
   };
