@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./App.css";
 import UserContext from "./UserContext";
 import User from "./User";
@@ -13,13 +13,30 @@ function App() {
   const { user, address } = useContext(UserContext);
   const [userData, setUserData] = useState({ name: user.name });
   const [addressData, setAddressData] = useState({ place: address.place });
-
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
+  useEffect(() => {
+    // Set up an interval to update the time every 1000ms (1 second)
+    const timer = setInterval(() => {
+      setTime(new Date().toLocaleTimeString());
+    }, 1000);
+    // Clean up the interval on component unmount to prevent memory leaks
+    return () => clearInterval(timer);
+  }, []);
   return (
     <Provider store={store}>
       {/* <UserContext.Provider value={{ user: userData, address: addressData }}> */}
       <section id="center">
         <div>
-          <h1>React Demo</h1>
+          <h1
+            style={{
+              fontSize: "200px",
+              display: "block",
+              marginTop: "100px",
+              marginBottom: "100px",
+            }}
+          >
+            {time}
+          </h1>
         </div>
         <input
           type="text"

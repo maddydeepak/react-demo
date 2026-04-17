@@ -9,6 +9,9 @@ const nameSlice = createSlice({
     updateName: (state, action) => {
       state.usersList.push(action.payload);
     },
+    deleteName: (state, action) => {
+      state.usersList = state.usersList.filter
+    }
   },
 });
 
